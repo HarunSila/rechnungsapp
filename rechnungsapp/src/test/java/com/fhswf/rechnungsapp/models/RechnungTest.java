@@ -108,7 +108,7 @@ public class RechnungTest {
 
     @Test
     public void testGenerateAndSavePDF() throws IOException {
-        String outputFilePath = "test_rechnungen/RechnungTestOutput.pdf";
+        String outputFilePath = "RechnungUnitTestOutput.pdf";
         rechnung.printPDF();
         PDDocument document = null;
 
