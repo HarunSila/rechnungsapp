@@ -1,0 +1,39 @@
+<div class="geschaeftspartner-page">
+    <h1>Geschäftspartner</h1>
+  
+    <div class="partner-grid">
+      <div class="partner-card" *ngFor="let partner of geschaeftspartner">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <div mat-card-avatar class="partner-avatar"></div>
+            <mat-card-title>{{ partner.name }}</mat-card-title>
+            <mat-card-subtitle>{{ partner.anschrift.ort }}, {{ partner.anschrift.land }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ partner.beschreibung }}</p>
+            <p>
+              {{ partner.anschrift.strasse }} {{ partner.anschrift.nummer }},
+              {{ partner.anschrift.plz }} {{ partner.anschrift.ort }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions *appHasRole="'Partner-Administration'">
+            <button mat-button (click)="editPartner(partner)">
+              <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>Editieren
+            </button>
+            <button mat-button (click)="deletePartner(partner.id)">
+              <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>Löschen
+            </button>
+            <button mat-button (click)="checkBills(partner.id)">
+              <mat-icon fontSet="material-symbols-outlined">receipt</mat-icon>Rechnungen
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Add Partner Button -->
+    <button mat-fab class="add-partner-button" (click)="addPartner()" *appHasRole="'Partner-Administration'">
+        <mat-icon fontSet="material-symbols-outlined">add</mat-icon>Neu
+    </button>
+  </div>
+  

@@ -1,0 +1,87 @@
+<div class="summary-container">
+    <h1>Rechnung Zusammenfassung</h1>
+  
+    <div class="summary-columns">
+      <!-- Erste Spalte -->
+      <div class="column">
+        <!-- General Information -->
+        <section class="general-info">
+          <h2>Allgemeine Informationen</h2>
+          <p><strong>Nummer:</strong> {{ billCreationService.nummer }}</p>
+          <p><strong>Bestellnummer:</strong> {{ billCreationService.bestellnummer }}</p>
+          <p><strong>Bezeichnung:</strong> {{ billCreationService.bezeichnung | async }}</p>
+          <p><strong>Per Mail:</strong> {{ (billCreationService.perMail | async) ? 'Ja' : 'Nein' }}</p>
+          <p><strong>Leistung von:</strong> {{ formatLeistungVon() }}</p>
+          <p><strong>Leistung bis:</strong> {{ formatLeistungBis() }}</p>
+        </section>
+  
+        <!-- Partner Information -->
+        <section class="partner-info">
+          <h2>Partner Informationen</h2>
+          <p><strong>Name:</strong> {{ billCreationService.geschaeftspartner.name | async }}</p>
+          <p><strong>Beschreibung:</strong> {{ billCreationService.geschaeftspartner.beschreibung | async }}</p>
+          <p><strong>Anschrift:</strong></p>
+          <p>
+            {{ billCreationService.geschaeftspartner.anschrift.strasse | async }}
+            {{ billCreationService.geschaeftspartner.anschrift.nummer | async }},
+            {{ billCreationService.geschaeftspartner.anschrift.plz | async }}
+            {{ billCreationService.geschaeftspartner.anschrift.ort | async }},
+            {{ billCreationService.geschaeftspartner.anschrift.land | async }}
+          </p>
+        </section>
+  
+        <!-- Ansprechpartner -->
+        <section class="contact-info">
+          <h2>Ansprechpartner</h2>
+          <p><strong>Anrede:</strong> {{ billCreationService.ansprechpartner.anrede | async }}</p>
+          <p><strong>Name:</strong> {{ billCreationService.ansprechpartner.vorname | async }} {{ billCreationService.ansprechpartner.name | async }}</p>
+          <p><strong>Email:</strong> {{ billCreationService.ansprechpartner.email | async }}</p>
+          <p><strong>Anschrift:</strong></p>
+          <p>
+            {{ billCreationService.ansprechpartner.anschrift.strasse | async }}
+            {{ billCreationService.ansprechpartner.anschrift.nummer | async }},
+            {{ billCreationService.ansprechpartner.anschrift.plz | async }}
+            {{ billCreationService.ansprechpartner.anschrift.ort | async }},
+            {{ billCreationService.ansprechpartner.anschrift.land | async }}
+          </p>
+        </section>
+      </div>
+  
+      <!-- Zweite Spalte -->
+      <div class="column">
+        <!-- Positions -->
+        <section class="positions-info">
+          <h2>Positionen</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Bezeichnung</th>
+                <th>Menge</th>
+                <th>Einheit</th>
+                <th>Netto Einzelpreis (€)</th>
+                <th>Netto Gesamt (€)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let position of billCreationService.positions">
+                <td>{{ position.bezeichnung }}</td>
+                <td>{{ position.menge }}</td>
+                <td>{{ position.einheit }}</td>
+                <td>{{ (position.nettoEinzelpreisInCent / 100) | number: '1.2-2' }}</td>
+                <td>{{ (position.menge * position.nettoEinzelpreisInCent / 100) | number: '1.2-2' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+  
+        <!-- Totals -->
+        <section class="totals-info">
+          <h2>Gesamt</h2>
+          <p><strong>Netto Summe (€):</strong> {{ calculateNettoSum() | number: '1.2-2' }}</p>
+          <p><strong>Umsatzsteuer ({{ billCreationService.umsatzsteuer.satz | async }}%):</strong> 
+            {{ calculateTax() | number: '1.2-2' }}</p>
+          <p><strong>Brutto Summe (€):</strong> {{ calculateBruttoSum() | number: '1.2-2' }}</p>
+        </section>
+      </div>
+    </div>
+  </div>  

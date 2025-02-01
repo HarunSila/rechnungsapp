@@ -1,0 +1,68 @@
+.page {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.rechnungen-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rechnung-card {
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+  
+  .rechnung-header {
+    padding: 1rem;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .rechnung-header:hover {
+    background: #e9ecef;
+  }
+  
+  .rechnung-details {
+    padding: 1rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  th {
+    background: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  tbody tr:hover {
+    background: #f5f5f5;
+  }
+
+  .toggle-btn {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+  }
+  

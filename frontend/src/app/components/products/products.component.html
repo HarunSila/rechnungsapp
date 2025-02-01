@@ -1,0 +1,32 @@
+<div class="products-page">
+    <h1>Produkte</h1>
+  
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <div mat-card-avatar class="product-avatar"></div>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle>{{ product.einheit }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ product.description }}</p>
+            <p class="price">{{ product.price | currency:'EUR' }}</p>
+          </mat-card-content>
+          <mat-card-actions *appHasRole="'Partner-Administration'">
+            <button mat-button (click)="editProduct(product)">
+                <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>Editieren
+            </button>
+            <button mat-button (click)="deleteProduct(product.id)">
+                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>Löschen
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  
+    <!-- Add Product Button -->
+    <button mat-fab class="add-product-button" (click)="addProduct()" *appHasRole="'Partner-Administration'">
+        <mat-icon fontSet="material-symbols-outlined">add</mat-icon>Neu
+    </button>
+  </div>  

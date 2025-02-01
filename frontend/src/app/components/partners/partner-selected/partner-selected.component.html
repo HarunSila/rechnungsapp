@@ -1,0 +1,78 @@
+<div class="page">
+  <div class="rechnungen-container">
+      <h1>Rechnungen Übersicht</h1>
+    
+      <!-- Iterate through all Rechnungen -->
+      <div *ngFor="let rechnung of rechnungen" class="rechnung-card">
+        <div class="rechnung-header" (click)="toggleRechnung(rechnung.id)">
+          <h2>Rechnung: {{ rechnung.nummer }}</h2>
+          <p>Bestellnummer: {{ rechnung.bestellNummer }}</p>
+          <button mat-button class="toggle-btn">
+            {{ getToggleStatus(rechnung) }}
+          </button>
+        </div>
+    
+        <!-- Expandable content -->
+        <div class="rechnung-details" *ngIf="getexpandedStatus(rechnung)">
+          <!-- General Info -->
+          <section class="general-info">
+            <h3>Allgemeine Informationen</h3>
+            <p><strong>Bezeichnung:</strong> {{ rechnung.bezeichnung }}</p>
+            <p><strong>Per Mail:</strong> {{ rechnung.perMail ? 'Ja' : 'Nein' }}</p>
+            <p><strong>Leistung von:</strong> {{ rechnung.leistungVon | date: 'dd.MM.yyyy' }}</p>
+            <p><strong>Leistung bis:</strong> {{ rechnung.leistungBis | date: 'dd.MM.yyyy' }}</p>
+          </section>
+    
+          <!-- Partner Info -->
+          <section class="partner-info">
+            <h3>Geschätspartner Informationen</h3>
+            <p><strong>Name:</strong> {{ geschaeftspartner.name }}</p>
+            <p><strong>Beschreibung:</strong> {{ geschaeftspartner.beschreibung }}</p>
+            <p><strong>Anschrift:</strong></p>
+            <p>
+              {{ geschaeftspartner.anschrift.strasse }}
+              {{ geschaeftspartner.anschrift.nummer }},
+              {{ geschaeftspartner.anschrift.plz }}
+              {{ geschaeftspartner.anschrift.ort }},
+              {{ geschaeftspartner.anschrift.land }}
+            </p>
+          </section>
+    
+          <!-- Positions -->
+          <section class="positions-info">
+            <h3>Positionen</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Bezeichnung</th>
+                  <th>Menge</th>
+                  <th>Einheit</th>
+                  <th>Netto Einzelpreis (€)</th>
+                  <th>Netto Gesamt (€)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let position of rechnung.positionen">
+                  <td>{{ position.bezeichnung }}</td>
+                  <td>{{ position.menge }}</td>
+                  <td>{{ position.einheit }}</td>
+                  <td>{{ (position.nettoEinzelpreisInCent / 100) | number: '1.2-2' }}</td>
+                  <td>{{ (position.menge * position.nettoEinzelpreisInCent / 100) | number: '1.2-2' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+    
+          <!-- Totals -->
+          <section class="totals-info">
+            <h3>Gesamt</h3>
+            <p><strong>Netto Summe (€):</strong> {{ calculateNettoSum(rechnung.positionen) | number: '1.2-2' }}</p>
+            <p><strong>Umsatzsteuer ({{ rechnung.umsatzsteuer.satz }}%):</strong> 
+              {{ calculateTax(rechnung.positionen, rechnung.umsatzsteuer.satz) | number: '1.2-2' }}</p>
+            <p><strong>Brutto Summe (€):</strong> {{ calculateBruttoSum(rechnung.positionen, rechnung.umsatzsteuer.satz) | number: '1.2-2' }}</p>
+          </section>
+        </div>
+      </div>
+    </div>
+</div>
+  

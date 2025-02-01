@@ -1,0 +1,95 @@
+<div class="form-container">
+    <h2>Create Order</h2>
+    <form [formGroup]="generalInformationForm"novalidate>
+      <!-- Order Number -->
+      <div class="form-group">
+        <label for="bestellnummer">Bestellnummer</label>
+        <input id="bestellnummer" type="text" [value]="bestellnummer" readonly />
+      </div>
+  
+      <!-- Bezeichnung -->
+      <div class="form-group">
+        <label for="bezeichnung">Bezeichnung</label>
+        <input
+          id="bezeichnung"
+          formControlName="bezeichnung"
+          type="text"
+          placeholder="Enter description"
+          required
+        />
+        <div class="error" *ngIf="generalInformationForm.get('bezeichnung')?.invalid && generalInformationForm.get('bezeichnung')?.touched">
+          Bezeichnung is required.
+        </div>
+      </div>
+  
+      <!-- Per Mail -->
+      <div class="form-group checkbox">
+        <label>
+          <input type="checkbox" formControlName="perMail" />
+          Send via Mail
+        </label>
+      </div>
+  
+      <!-- Leistung Von -->
+      <div class="form-group">
+        <label for="leistungVon">Leistung Von</label>
+        <input
+          id="leistungVon"
+          formControlName="leistungVon"
+          type="date"
+          required
+        />
+        <div class="error" *ngIf="generalInformationForm.get('leistungVon')?.invalid && generalInformationForm.get('leistungVon')?.touched">
+          Start date is required.
+        </div>
+      </div>
+  
+      <!-- Leistung Bis -->
+      <div class="form-group">
+        <label for="leistungBis">Leistung Bis</label>
+        <input
+          id="leistungBis"
+          formControlName="leistungBis"
+          type="date"
+          required
+        />
+        <div class="error" *ngIf="generalInformationForm.get('leistungBis')?.invalid && generalInformationForm.get('leistungBis')?.touched">
+          End date is required.
+        </div>
+      </div>
+  
+      <!-- Umsatzsteuer -->
+      <div class="form-group">
+        <fieldset formGroupName="umsatzsteuer">
+          <legend>Umsatzsteuer</legend>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              formControlName="name"
+              type="text"
+              placeholder="Enter tax name"
+              required
+            />
+            <div class="error" *ngIf="generalInformationForm.get('umsatzsteuer.name')?.invalid && generalInformationForm.get('umsatzsteuer.name')?.touched">
+              Tax name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="satz">Satz (%)</label>
+            <input
+              id="satz"
+              formControlName="satz"
+              type="number"
+              placeholder="Enter tax rate"
+              required
+            />
+            <div class="error" *ngIf="generalInformationForm.get('umsatzsteuer.satz')?.invalid && generalInformationForm.get('umsatzsteuer.satz')?.touched">
+              Tax rate is required.
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+  

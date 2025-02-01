@@ -1,0 +1,28 @@
+<div class="text-template-container">
+    <h3>Textbausteine bearbeiten</h3>
+  
+    <form [formGroup]="textTemplateForm" novalidate>
+      <!-- Pre-Text -->
+      <div class="form-group">
+        <label for="preText">Vortext</label>
+        <textarea
+          id="preText"
+          formControlName="preText"
+          placeholder="Geben Sie den Vortext ein..."
+          rows="10"
+        ></textarea>
+      </div>
+  
+      <!-- Post-Text -->
+      <div class="form-group">
+        <label for="postText">Nachtext</label>
+        <textarea
+          id="postText"
+          formControlName="postText"
+          placeholder="Geben Sie den Nachtext ein..."
+          rows="10"
+        ></textarea>
+      </div>
+    </form>
+  </div>
+  

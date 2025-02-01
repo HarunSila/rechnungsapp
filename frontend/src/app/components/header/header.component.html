@@ -1,0 +1,33 @@
+<div class="header-container">
+    <h1 class="header-title">Rechnungsapp</h1>
+    <div class="header-nav">
+        <button 
+            mat-raised-button 
+            [routerLink]="'/dashboard'" 
+            routerLinkActive="active">
+            Dashboard
+        </button>
+        <button 
+            mat-raised-button 
+            [routerLink]="'/produkte'" 
+            routerLinkActive="active">
+            Produkte
+        </button>
+        <button 
+            mat-raised-button 
+            [routerLink]="'/geschaeftspartner'" 
+            routerLinkActive="active">
+            Geschäftspartner
+        </button>
+        <button 
+            mat-raised-button 
+            (click)="navigateToKeycloak()">
+            Benutzerverwaltung
+        </button>
+        <button 
+            mat-raised-button 
+            (click)="logout()">
+            Logout
+        </button>
+    </div>
+</div>

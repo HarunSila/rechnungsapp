@@ -1,0 +1,87 @@
+.geschaeftspartner-page {
+    padding: 2rem;
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #37474f;
+    }
+  
+    .partner-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+  
+    .partner-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      mat-card {
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)!important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(145deg, #ffffff, #f0f0f0)!important;
+    
+  
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+      }
+  
+      mat-card-header {
+        .partner-avatar {
+          background-color: #aaff65;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+        }
+  
+        mat-card-title {
+            font-weight: bold;
+            color: #546e7a;
+        }
+  
+        mat-card-subtitle {
+          color: #78909c;
+          font-size: 1rem;
+        }
+      }
+  
+      mat-card-content {
+        p {
+          margin: 0.5rem 0;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+      }
+  
+      mat-card-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+  
+        button {
+          mat-icon {
+            margin-right: 0.25rem;
+          }
+        }
+      }
+    }
+
+    .add-partner-button {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 10;
+        background-color: #3f51b5 !important;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    
+        &:hover {
+          background-color: #5c6bc0 !important;
+        }
+      }
+  }  

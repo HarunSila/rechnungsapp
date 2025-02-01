@@ -1,0 +1,76 @@
+<div class="dashboard-page">
+    <div class="welcoming-container">
+        <h3>Willkommen, {{username}}!</h3>
+        <p>Email: {{email}}</p>
+    </div>
+    
+    <div class="action-container">
+        <button mat-fab extended (click)="createInvoice()">
+            <mat-icon fontSet="material-symbols-outlined">receipt</mat-icon>Rechnung erstellen
+        </button>
+    
+        <div class="product-carousel">
+            <div class="product-card" *ngFor="let product of products">
+                <h4>{{product.name}}</h4>
+                <p>{{product.description}}</p>
+                <span class="price">{{product.price | currency:'EUR'}}</span>
+                <p>/{{product.einheit}}</p>
+    
+                <!-- Toggle Select/Deselect -->
+                <button mat-raised-button
+                        
+                        (click)="toggleSelection(product)">
+                    {{ isSelected(product.id) ? 'Rückgängig' : 'Hinzufügen' }}
+                </button>
+                
+                <!-- Show input for amount if selected -->
+                <div *ngIf="isSelected(product.id)">
+                    <div class="inputField" appearance="fill">
+                        <mat-label>Menge</mat-label>
+                        <input matInput type="number" [(ngModel)]="product.menge" min="1" (ngModelChange)="updateQuantity(product.id, $event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="step1" class="step-container step1" *ngIf="getActiveStep() > 0">
+        <button mat-fab class="step-nav-button prev" (click)="onPreviousStep()" *ngIf="getActiveStep() === 1">
+            <mat-icon fontSet="material-symbols-outlined">arrow_upward</mat-icon>
+        </button>
+        <app-step-general-information></app-step-general-information>
+        <button mat-fab class="step-nav-button next" (click)="onNextStep()" *ngIf="getActiveStep() === 1" [disabled]="toggleNavigation(1)">
+            <mat-icon fontSet="material-symbols-outlined">arrow_downward</mat-icon>
+        </button>
+    </div>
+
+    <div id="step2" class="step-container step2" *ngIf="getActiveStep() > 1">
+        <button mat-fab class="step-nav-button prev" (click)="onPreviousStep()" *ngIf="getActiveStep() === 2">
+            <mat-icon fontSet="material-symbols-outlined">arrow_upward</mat-icon>
+        </button>
+        <app-step-partner-selection></app-step-partner-selection>
+        <button mat-fab class="step-nav-button next" (click)="onNextStep()" *ngIf="getActiveStep() === 2" [disabled]="toggleNavigation(2)">
+            <mat-icon fontSet="material-symbols-outlined">arrow_downward</mat-icon>
+        </button>
+    </div>
+
+    <div id="step3" class="step-container step3" *ngIf="getActiveStep() > 2">
+        <button mat-fab class="step-nav-button prev" (click)="onPreviousStep()" *ngIf="getActiveStep() === 3">
+            <mat-icon fontSet="material-symbols-outlined">arrow_upward</mat-icon>
+        </button>
+        <app-step-text-template></app-step-text-template>
+        <button mat-fab class="step-nav-button next" (click)="onNextStep()" *ngIf="getActiveStep() === 3" [disabled]="toggleNavigation(3)">
+            <mat-icon fontSet="material-symbols-outlined">arrow_downward</mat-icon>
+        </button>
+    </div>
+
+    <div id="step4" class="step-container step4" *ngIf="getActiveStep() > 3">
+        <button mat-fab class="step-nav-button prev" (click)="onPreviousStep()" *ngIf="getActiveStep() === 4">
+            <mat-icon fontSet="material-symbols-outlined">arrow_upward</mat-icon>
+        </button>
+        <app-step-last-confirmation></app-step-last-confirmation>
+        <button mat-fab class="step-nav-button next" (click)="onSubmit()" *ngIf="getActiveStep() === 4">
+            <mat-icon fontSet="material-symbols-outlined">done</mat-icon>
+        </button>
+    </div>
+</div>

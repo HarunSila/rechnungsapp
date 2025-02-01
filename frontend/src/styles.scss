@@ -1,0 +1,22 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #007bff;
+  }
+  

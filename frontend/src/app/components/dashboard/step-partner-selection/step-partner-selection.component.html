@@ -1,0 +1,131 @@
+<div class="main-container">
+    <!-- Carousel Section -->
+    <div class="carousel-container">
+      <h3>Geschäftspartner auswählen</h3>
+      <div class="carousel">
+        <div
+          class="carousel-item"
+          *ngFor="let partner of geschaeftspartner"
+          [class.selected]="selectedPartner?.id === partner.id"
+          (click)="selectGeschaeftspartner(partner)"
+        >
+          <h4>{{ partner.name }}</h4>
+          <p>{{ partner.beschreibung }}</p>
+          <address>
+            {{ partner.anschrift.strasse }} {{ partner.anschrift.nummer }},
+            {{ partner.anschrift.plz }} {{ partner.anschrift.ort }},
+            {{ partner.anschrift.land }}
+          </address>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Form Section -->
+    <div class="form-container">
+      <h3>Geschäftspartner erfassen</h3>
+      <form [formGroup]="geschaeftspartnerForm" novalidate>
+        
+  
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" formControlName="name" placeholder="Name des Geschäftspartners" />
+        </div>
+  
+        <!-- Beschreibung -->
+        <div class="form-group">
+          <label for="beschreibung">Beschreibung</label>
+          <textarea
+            id="beschreibung"
+            formControlName="beschreibung"
+            placeholder="Beschreibung des Geschäftspartners"
+            rows="4"
+          ></textarea>
+        </div>
+  
+        <!-- Anschrift -->
+        <fieldset formGroupName="anschrift">
+          <legend>Anschrift</legend>
+          <div class="form-group">
+            <label for="strasse">Straße</label>
+            <input id="strasse" type="text" formControlName="strasse" />
+          </div>
+          <div class="form-group">
+            <label for="nummer">Nummer</label>
+            <input id="nummer" type="text" formControlName="nummer" />
+          </div>
+          <div class="form-group">
+            <label for="plz">PLZ</label>
+            <input id="plz" type="text" formControlName="plz" />
+          </div>
+          <div class="form-group">
+            <label for="ort">Ort</label>
+            <input id="ort" type="text" formControlName="ort" />
+          </div>
+          <div class="form-group">
+            <label for="land">Land</label>
+            <input id="land" type="text" formControlName="land" />
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+     <!-- Form Section -->
+     <div class="form-container">
+        <h3>Ansprechpartner erfassen</h3>
+        <form [formGroup]="ansprechpartnerForm" novalidate>
+          
+        <!-- Anrede -->
+        <div class="form-group">
+            <label for="anrede">Anrede</label>
+            <select id="anrede" formControlName="anrede" required>
+                <option *ngFor="let anrede of anredeOptions" [value]="anrede">{{ anrede.charAt(0).toUpperCase() + anrede.slice(1).toLowerCase() }}</option>
+            </select>
+        </div>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" formControlName="name" placeholder="Name des Ansprechpartners" />
+          </div>
+    
+          <!-- Vorname -->
+          <div class="form-group">
+            <label for="name">Vorname</label>
+            <input id="vorname" type="text" formControlName="vorname" placeholder="Vorname des Ansprechpartners" />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" placeholder="Email des Ansprechpartners" />
+          </div>
+    
+          <!-- Anschrift -->
+          <fieldset formGroupName="anschrift">
+            <legend>Anschrift</legend>
+            <div class="form-group">
+              <label for="strasse">Straße</label>
+              <input id="strasse" type="text" formControlName="strasse" />
+            </div>
+            <div class="form-group">
+              <label for="nummer">Nummer</label>
+              <input id="nummer" type="text" formControlName="nummer" />
+            </div>
+            <div class="form-group">
+              <label for="plz">PLZ</label>
+              <input id="plz" type="text" formControlName="plz" />
+            </div>
+            <div class="form-group">
+              <label for="ort">Ort</label>
+              <input id="ort" type="text" formControlName="ort" />
+            </div>
+            <div class="form-group">
+              <label for="land">Land</label>
+              <input id="land" type="text" formControlName="land" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+  </div>
+  
